@@ -20,7 +20,7 @@ public class Plotter extends Application {
     final int maxsize = (int)1e3,multiplier=10,min=-1000,max=1000;
     @Override public void start(Stage stage) {
 
-
+        //add new sorters to this list to be plotted
         intSorters.add(new MergeSorter<>());
         intSorters.add(new HeapSorter<>());
         intSorters.add(new InsertionSorter<>());
