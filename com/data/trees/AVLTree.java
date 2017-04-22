@@ -34,7 +34,10 @@ public class AVLTree<T extends Comparable> extends BinarySearchTree<T>{
             return null;
         else if(node.left == null && node.right == null)
             return node;
-        else if(node.left.getHeight() - node.right.getHeight() > 1 && node.right == null){               //if left - right > 1
+        else if (node.right == null && node.left.getHeight() > 0){
+            rightRotate(node);
+        }
+        else if(node.left.getHeight() - node.right.getHeight() > 1){               //if left - right > 1
             if (node.left.left.getHeight() >= node.left.right.getHeight()){        //if height of left.left >= left.right
                 rightRotate(node);
             }
@@ -42,6 +45,9 @@ public class AVLTree<T extends Comparable> extends BinarySearchTree<T>{
                 leftRotate(node.left);
                 rightRotate(node);
             }
+        }
+        else if (node.left == null && node.right.getHeight() > 0){
+            leftRotate(node);
         }
         else{
             if (node.right.getHeight() - node.left.getHeight() > 1){            //if right - left > 1
