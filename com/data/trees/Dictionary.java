@@ -116,23 +116,23 @@ public class Dictionary<T extends Comparable>{
 
         do {
             in = input.next();
-            if (in.equalsIgnoreCase("1")){
+            if (in.equalsIgnoreCase("1")){                  //'1' for insertion
                 word = input.next();
                 dictionary.insert(word);
 
             }
-            else if (in.equalsIgnoreCase("2")){
+            else if (in.equalsIgnoreCase("2")){             //'2' for search
                 word = input.next();
                 dictionary.isFound(word);
             }
-            else if (in.equalsIgnoreCase("3")){
+            else if (in.equalsIgnoreCase("3")){             //'3' for deletion
                 word = input.next();
                 dictionary.delete(word);
             }
             else{
                 System.out.println("ERROR: wrong instruction number");
             }
-        }while (!in.equalsIgnoreCase("q"));
+        }while (!in.equalsIgnoreCase("q"));                 //'q' for quiting the loop
         System.out.println("exited from the program");
 
         dictionary.batchLookUps();
