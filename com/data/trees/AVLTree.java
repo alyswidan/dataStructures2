@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class AVLTree<T extends Comparable> extends BinarySearchTree<T>{
 
     @Override
-    TreeNode<T> insert(T content) {
+    public TreeNode<T> insert(T content) {
         TreeNode<T> n;
         if (root == null) {
             System.out.println("inserted " + content + " as root");
@@ -23,9 +23,9 @@ public class AVLTree<T extends Comparable> extends BinarySearchTree<T>{
     }
 
     @Override
-    TreeNode<T> delete(T content) {
+    public TreeNode<T> delete(T content) {
         TreeNode<T> n = new TreeNode<>();
-        n.deleteFromSubtree(content);
+        n = root.deleteFromSubtree(content);
         return balance(n);
     }
 
@@ -34,8 +34,13 @@ public class AVLTree<T extends Comparable> extends BinarySearchTree<T>{
             return null;
         else if(node.left == null && node.right == null)
             return node;
+        else if (node.right == null && node.left.getHeight() == 0 || node.left == null && node.right.getHeight() == 0)
+            return node;
         else if (node.right == null && node.left.getHeight() > 0){
             rightRotate(node);
+        }
+        else if (node.left == null && node.right.getHeight() > 0){
+            leftRotate(node);
         }
         else if(node.left.getHeight() - node.right.getHeight() > 1){               //if left - right > 1
             if (node.left.left.getHeight() >= node.left.right.getHeight()){        //if height of left.left >= left.right
@@ -45,9 +50,6 @@ public class AVLTree<T extends Comparable> extends BinarySearchTree<T>{
                 leftRotate(node.left);
                 rightRotate(node);
             }
-        }
-        else if (node.left == null && node.right.getHeight() > 0){
-            leftRotate(node);
         }
         else{
             if (node.right.getHeight() - node.left.getHeight() > 1){            //if right - left > 1
@@ -59,10 +61,11 @@ public class AVLTree<T extends Comparable> extends BinarySearchTree<T>{
                 }
             }
         }
+        balance(node.parent);
         return node;
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         AVLTree<Integer> bst = new AVLTree<>();
         bst.insert(15);
         bst.insert(10);
@@ -102,5 +105,5 @@ public class AVLTree<T extends Comparable> extends BinarySearchTree<T>{
         //BTreePrinter.printNode(bst1.root);
 
 
-    }
+    }*/
 }

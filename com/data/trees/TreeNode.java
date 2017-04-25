@@ -33,11 +33,6 @@ public class TreeNode<T extends Comparable> {
         }
     }
 
-    /*int getHeight() {
-        if (left == null && right == null) return 0;
-        return Math.max(left == null ? 0 : left.getHeight(), right == null ? 0 : right.getHeight());
-    }*/
-
     public TreeNode<T> insertInSubtree(T content) {
 
         if (content.compareTo(this.content) < 0) {

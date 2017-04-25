@@ -30,54 +30,13 @@ public class BinarySearchTree<T extends Comparable> {
 
     TreeNode<T> delete(T content) {
         TreeNode<T> n = new TreeNode<>();
-        return n.deleteFromSubtree(content);
+        n = root.deleteFromSubtree(content);
+        return n;
     }
 
     TreeNode<T> find(T content) {
         return root.findInSubtree(content);
     }
-
-
-    /*@Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-
-
-        Queue<Pair<TreeNode<T>, Integer>> q = new LinkedList<>();
-        q.add(new Pair<>(root, 1));
-        int height = root.getHeight();
-        int currentLevel = 0;
-        int currentSpaces = (1 << height);
-        while (!q.isEmpty()) {
-            Pair<TreeNode<T>, Integer> head = q.remove();
-            TreeNode<T> t = head.getKey();
-            int order = head.getValue();
-            int orderInLevel = order - (1 << t.depth) + 1;
-            System.out.println("popped " + t.content + " ordered " + order + " and " + orderInLevel + " in level " + currentLevel);
-            if (t.depth != currentLevel) {
-                currentLevel = t.depth;
-                currentSpaces >>= 1;
-                builder.append("\n");
-                System.out.println("inserting " + (orderInLevel * currentSpaces) + " spaces before " + t.content);
-                builder.append(getSpaces(orderInLevel * currentSpaces));
-                builder.append(t.content);
-            }
-
-            if (orderInLevel > 1) {
-                System.out.println("inserting " + (orderInLevel * currentSpaces * 2) + " spaces before " + t.content);
-                builder.append(getSpaces(orderInLevel * currentSpaces));
-                builder.append(t.content);
-            }
-
-            if (t.left != null)
-                q.add(new Pair<>(t.left, order * 2));
-            if (t.right != null)
-                q.add(new Pair<>(t.right, order * 2 + 1));
-
-
-        }
-        return builder.toString();
-    }*/
 
     String getSpaces(int count) {
         StringBuilder builder = new StringBuilder();
